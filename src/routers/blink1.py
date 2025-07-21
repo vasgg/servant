@@ -4,7 +4,7 @@ import logging
 from fastapi import APIRouter, HTTPException
 from starlette import status
 
-from enums import Color
+from src.enums import Color
 
 router = APIRouter()
 logger = logging.getLogger(__name__)

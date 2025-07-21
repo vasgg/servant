@@ -3,8 +3,8 @@ from functools import cache
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings
 
-from enums import Stage
-from helpers import assign_config_dict
+from src.enums import Stage
+from src.helpers import assign_config_dict
 
 
 class NgrokConfig(BaseSettings):

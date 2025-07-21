@@ -8,8 +8,8 @@ from pydantic_settings import SettingsConfigDict
 
 from aiohttp import ClientSession, BasicAuth
 
-from config import get_settings
-from enums import Color
+from src.config import get_settings
+from src.enums import Color
 
 settings = get_settings()
 
