@@ -7,7 +7,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from starlette import status
 from starlette.exceptions import HTTPException
 
-from config import get_settings
+from src.config import get_settings
 from src.routers.blink1 import router as blink1_router
 from src.helpers import setup_logs
 
