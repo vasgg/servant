@@ -1,10 +1,19 @@
 from functools import cache
 
 from pydantic import Field, SecretStr
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from src.enums import Stage
-from src.helpers import assign_config_dict
+
+
+def assign_config_dict(prefix: str = "") -> SettingsConfigDict:
+    return SettingsConfigDict(
+        env_prefix=prefix,
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,
+        extra="allow",
+    )
 
 
 class NgrokConfig(BaseSettings):
