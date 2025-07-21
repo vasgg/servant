@@ -3,8 +3,6 @@ from functools import cache
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from src.enums import Stage
-
 
 def assign_config_dict(prefix: str = "") -> SettingsConfigDict:
     return SettingsConfigDict(
@@ -26,7 +24,6 @@ class NgrokConfig(BaseSettings):
 
 class Settings(BaseSettings):
     ngrok: NgrokConfig = Field(default_factory=NgrokConfig)
-    stage = Stage
 
     model_config = assign_config_dict()
 
