@@ -36,6 +36,7 @@ async def run_blink1_tool(*args):
 @router.get("/{color}", status_code=status.HTTP_200_OK)
 async def blink_color(
     color: Color,
+    username: str = Depends(get_current_username)
 ):
     await run_blink1_tool(f"--{color}")
     await asyncio.sleep(1)
