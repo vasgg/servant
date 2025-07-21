@@ -1,11 +1,13 @@
 import secrets
 
 from fastapi import Depends
-from fastapi.security import HTTPBasicCredentials
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from starlette import status
 from starlette.exceptions import HTTPException
 
-from src.main import security, settings
+from src.main import settings
+
+security = HTTPBasic()
 
 
 def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
