@@ -4,10 +4,10 @@ from fastapi import Depends
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from starlette import status
 from starlette.exceptions import HTTPException
-
-from src.main import settings
+from src.config import get_settings
 
 security = HTTPBasic()
+settings = get_settings()
 
 
 def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
