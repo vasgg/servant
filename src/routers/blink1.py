@@ -1,9 +1,10 @@
 import asyncio
 import logging
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from starlette import status
 
+from main import get_current_username
 from src.enums import Color
 
 router = APIRouter()
@@ -33,7 +34,10 @@ async def run_blink1_tool(*args):
 
 
 @router.get("/{color}", status_code=status.HTTP_200_OK)
-async def blink_red(color: Color):
+async def blink_color(
+    color: Color,
+    username: str = Depends(get_current_username)
+):
     await run_blink1_tool(f"--{color}")
     await asyncio.sleep(1)
     await run_blink1_tool("--off")
