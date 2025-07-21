@@ -4,7 +4,7 @@ import logging
 from fastapi import APIRouter, Depends, HTTPException
 from starlette import status
 
-from src.main import get_current_username
+from src.routers.deps import get_current_username
 from src.enums import Color
 
 router = APIRouter()

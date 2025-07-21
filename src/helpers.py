@@ -4,22 +4,9 @@ from datetime import datetime
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
-from aiohttp import ClientSession, BasicAuth
-
 from src.config import get_settings
-from src.enums import Color
 
 settings = get_settings()
-
-
-async def blink1_color(color: Color):
-    async with ClientSession() as session:
-        auth = BasicAuth(
-            settings.NGROK_USER.get_secret_value(),
-            settings.NGROK_PASS.get_secret_value(),
-        )
-        ngrok_url = settings.NGROK_URL.get_secret_value()
-        await session.get(ngrok_url + f"blink/{color}", auth=auth)
 
 
 class CustomFormatter(logging.Formatter):
