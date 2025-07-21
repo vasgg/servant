@@ -1,12 +1,13 @@
 import asyncio
 import logging
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from starlette import status
 
+from src.routers.deps import get_current_username
 from src.enums import Color
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_current_username)])
 logger = logging.getLogger(__name__)
 
 
