@@ -33,7 +33,16 @@ async def run_blink1_tool(*args):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/{color}", status_code=status.HTTP_200_OK)
+@router.get(
+    "/{color}", 
+    status_code=status.HTTP_200_OK,
+    responses={
+        200: {"description": "Color command executed successfully"},
+        401: {"description": "Authentication required"}
+    },
+    summary="Set blink1 device color",
+    description="Sets the blink1 device to the specified color for 1 second, then turns it off"
+)
 async def blink_color(color: Color):
     await run_blink1_tool(f"--{color}")
     await asyncio.sleep(1)
