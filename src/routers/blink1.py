@@ -4,10 +4,10 @@ import logging
 from fastapi import APIRouter, Depends, HTTPException
 from starlette import status
 
-from src.routers.deps import get_current_username
+from src.routers.deps import get_current_username, security
 from src.enums import Color
 
-router = APIRouter(dependencies=[Depends(get_current_username)])
+router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
@@ -43,7 +43,9 @@ async def run_blink1_tool(*args):
     summary="Set blink1 device color",
     description="Sets the blink1 device to the specified color for 1 second, then turns it off"
 )
-async def blink_color(color: Color):
+async def blink_color(color: Color, credentials=Depends(security)):
+    get_current_username(credentials)
+    
     await run_blink1_tool(f"--{color}")
     await asyncio.sleep(1)
     await run_blink1_tool("--off")
