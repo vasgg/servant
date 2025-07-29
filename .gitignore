@@ -89,6 +89,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+credentials.json
 .env
 .venv
 env/
