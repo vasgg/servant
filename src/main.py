@@ -13,8 +13,10 @@ settings = get_settings()
 app.include_router(blink1_router, prefix="/blink")
 app.include_router(gsheet_router, prefix="/gsheet")
 
+
 @app.get("/health")
 async def health_check():
     return {"status": "ok"}
+
 
 logging.info("servant started")
